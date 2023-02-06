@@ -19,7 +19,7 @@ def getVaScript():
           "_action_description":{
               "_010":"Начальный экран с приветствием и инструкцией",
               "_020":"dfdfdfdfdfdfdfd",
-              "_02220":"dfdfdfdfdfdf dfdfdfdfd"
+              "_02220":"dfdfdfdfdfdf   dfdfdfdfd"
 
           },
             "Direction_10":"Action_020_v",  "_010":"Кнопка подписки",
