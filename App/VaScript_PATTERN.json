@@ -1,0 +1,15 @@
+{
+"Action_XXX_v":{
+    "_agent_position":{
+        "en-US":"",
+        "ru-RU":""
+    },
+    "_action_description":{
+        "_010":""
+
+
+    },
+    "Direction_10":"Action_XXX",  "_010":"",
+    "Direction_20":"Action_XXX_v",  "_010":""
+}
+}  
