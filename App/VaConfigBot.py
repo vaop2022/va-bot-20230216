@@ -13,6 +13,7 @@ def setup(bot):
     bot.defineVariable('user name...username', '')
     bot.defineVariable('password...pwd', '')
     bot.defineVariable('port id...port_id', 5432)
+    ###
     """
     # val dev vars
     bot.defineVariable('telebot.TeleBot(5662687046******)...b10', telebot.TeleBot('6273699064:AAEw16IHpA_YEJ6a5nQdx-DkhpmojZzpYSQ'))
@@ -21,7 +22,7 @@ def setup(bot):
     bot.defineVariable('user name...username', 'postgres')
     bot.defineVariable('password...pwd', 'Postg!2408')
     bot.defineVariable('port id...port_id', 5432)
-
+    ###
 
 
     bot.defineVariable('message from customer...b11', 'unknown message from customer')
@@ -32,12 +33,10 @@ def setup(bot):
     bot.defineVariable('message_type constant: commands...commands', 'commands')
     bot.defineVariable('message_type constant: input...input', 'input')
 
-
     bot.defineVariable('input from customer constant...yes or no', 'yes_or_no')
     bot.defineVariable('input from customer constant...yes or no or uptoyou', 'yes_or_no_or_uptoyou')
 
     bot.defineVariable('input from customer constant...again', 'again')
-
 
     bot.defineVariable('Ask V-agent...msg_010', 'Ask V-agent to Rent or to Buy :')
     bot.defineVariable('button title...Yes/No', 'Rent')
