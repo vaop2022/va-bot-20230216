@@ -6,6 +6,7 @@ fpath = os.path.join(os.path.dirname(__file__), 'VaActionsFolder')
 sys.path.append(fpath)
 
 import psycopg2
+import psycopg2.extras
 
 import VaBox
 import VaScript
@@ -32,12 +33,21 @@ try:
             password = pwd,
             port = port_id
         )
-    cur = conn.cursor()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
     insert_script = 'INSERT INTO payment (id, chat_id) VALUES (%s,%s)'
     insert_value = (4,'test 4')
 
-    cur.execute(insert_script, insert_value)
+    #cur.execute(insert_script, insert_value)
+
+    update_script = 'UPDATE payment SET chat_id = \'new\' WHERE id = 1'
+
+    cur.execute(update_script)
+
+    cur.execute('SELECT * FROM payment')
+
+    for record in cur.fetchall():
+        print(record['id'], record['chat_id'])
 
     conn.commit()
 except Exception as error:
