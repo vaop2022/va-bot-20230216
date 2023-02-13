@@ -42,7 +42,7 @@ s.add_all([Book(title="Чистый Чистый Python", author_id=1, genre="к
 s.commit()
 
 print(s.query(Book).first().title)
-
+"""
 for title, price in s.query(Book.title, Book.price).order_by(Book.title).limit(2):
     print(title, price)
 
@@ -60,3 +60,4 @@ if autor_query != []:
     autor_query.name = 'Бизли' 
     s.add(autor_query)
     s.commit()
+"""
