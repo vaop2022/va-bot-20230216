@@ -4,6 +4,8 @@ import os
 import sys
 fpath = os.path.join(os.path.dirname(__file__), 'VaActionsFolder')
 sys.path.append(fpath)
+fpath = os.path.join(os.path.dirname(__file__), 'VaDatabase')
+sys.path.append(fpath)
 
 
 import VaBox

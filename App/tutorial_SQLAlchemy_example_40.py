@@ -16,13 +16,13 @@ url_object = URL.create(
     database=database,
 )
 
-engine = create_engine(url_object, echo = True)
+engine = create_engine(url_object, echo = False)
 
 # Флаг echo включает ведение лога через стандартный модуль logging Питона.
 # Когда он включен, мы увидим все созданные нами SQL-запросы. 
 session = sessionmaker(bind=engine)
 s = session()
-
+"""
 author_one = Author(name="Лутц") 
 s.add(author_one) 
 s.commit()
@@ -40,14 +40,15 @@ s.add_all([Book(title="Чистый Чистый Python", author_id=1, genre="к
            Book(title="Python как Питон", author_id=1, genre="компьютерная литература", price=2976)  
            ])
 s.commit()
-
-print(s.query(Book).first().title)
 """
-for title, price in s.query(Book.title, Book.price).order_by(Book.title).limit(2):
+print(s.query(Book).first().title)
+print('\n\n\n')
+
+for title, price in s.query(Book.title, Book.price).order_by(Book.title).limit(4):
     print(title, price)
 
 print('\n\n\n')
-
+"""
 for row in s.query(Book, Author).filter(Book.author_id == Author.id_author).filter(Book.price > 1000).group_by(Author.name):
     print(row.Book.title, ' ', row.Author.name)
 

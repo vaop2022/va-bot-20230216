@@ -17,7 +17,7 @@ url_object = URL.create(
     database=database,
 )
 
-engine = create_engine(url_object, echo = True)
+engine = create_engine(url_object, echo = False)
 
 Base = declarative_base()  
 
