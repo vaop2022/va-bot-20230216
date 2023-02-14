@@ -52,20 +52,20 @@ def action(va_data,bot_data):
     va_data.set('The previous Action...previous action', current_action)
     va_data.set('The current Action...current action', temp)
 
-    
-
-    if va_data.get('The previous Action...previous action') != 'Action_000':
-        message = bot_data.get('message from customer...b11')
-        trace = VaTraceTable(
-                chat_id = message.chat.id, 
-                previous_action = va_data.get('The previous Action...previous action'), 
-                direction = va_data.get('Direction...direction'), 
-                current_action = va_data.get('The current Action...current action')
-            ) 
-            
-        s = va_data.get('session...s')
-        s.add(trace) 
-        s.commit()
+    trace(va_data,bot_data)
 
     eval(va_data.get('The current Action...current action') + "(va_data,bot_data)")
+
+def trace(va_data,bot_data):
+    message = bot_data.get('message from customer...b11')
+    trace = VaTraceTable(
+            chat_id = message.chat.id, 
+            previous_action = va_data.get('The previous Action...previous action'), 
+            direction = va_data.get('Direction...direction'), 
+            current_action = va_data.get('The current Action...current action')
+        ) 
+        
+    s = va_data.get('session...s')
+    s.add(trace) 
+    s.commit()
 
