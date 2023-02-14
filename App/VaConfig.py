@@ -1,7 +1,7 @@
 from VaScript import getVaScript
 from sqlalchemy import URL, create_engine
 from sqlalchemy.orm import sessionmaker
-from TableClasses import Base, VaTrace
+from TableClasses import Base, VaTraceTable
 
 def setup(va):
 

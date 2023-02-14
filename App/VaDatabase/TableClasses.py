@@ -21,13 +21,14 @@ engine = create_engine(url_object, echo = False)
 
 Base = declarative_base()  
 
-class VaTrace(Base):  
+class VaTraceTable(Base):  
     __tablename__ = 'va_trace'  
     
     id = Column(Integer, primary_key=True)  
-    chat_id = Column(String(250), nullable=False)    
+    chat_id = Column(String(250), nullable=False)  
+    previous_action = Column(String(250))
     direction = Column(String(250))
-    action = Column(String(250))
+    current_action = Column(String(250))
 
 
 Base.metadata.create_all(engine)  
