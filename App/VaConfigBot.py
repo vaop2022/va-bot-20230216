@@ -1,10 +1,15 @@
+from dotenv import dotenv_values
 from VaScript import getVaScript
 import telebot
 
 def setup(bot):
 
-    ### The Bot variables setting
+    config = dotenv_values(".env")
 
+    ### The Bot variables setting
+    
+    bot.defineVariable('telebot.TeleBot(5662687046******)...b10', telebot.TeleBot(config.get("TELEGRAM_BOT_TOKEN")))
+    
     """
     # production vars
     bot.defineVariable('telebot.TeleBot(5662687046******)...b10', telebot.TeleBot('5631379194:AAH0hQ6mcX8h18cPD0WU8YRVC5fg2rWBGcM'))
