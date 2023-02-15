@@ -1,9 +1,12 @@
+from dotenv import dotenv_values
 from VaScript import getVaScript
 from sqlalchemy import URL, create_engine
 from sqlalchemy.orm import sessionmaker
 from TableClasses import Base, VaTraceTable
 
 def setup(va):
+
+    config = dotenv_values(".env")
 
     ### The VAOP variables setting
 
@@ -18,26 +21,19 @@ def setup(va):
 
     ### The DB setting
 
-
-    hostname = 'localhost'
-    database = 'postgres'
-    username = 'postgres'
-    pwd = 'Postg!2408'
-    port_id = 5432
-
     url_object = URL.create(
         "postgresql",
-        username=username,
-        password=pwd,  # plain (unescaped) text
-        host=hostname,
-        database=database,
+        username=config.get("PG_USERNAME"),
+        password=config.get("PG_PASSWORD"),
+        host=config.get("PG_HOSTNAME"),
+        database=config.get("PG_DATABASE"),
     )
 
     engine = create_engine(url_object, echo = False)
-
     # Флаг echo включает ведение лога через стандартный модуль logging Питона.
-    # Когда он включен, мы увидим все созданные нами SQL-запросы. 
+    # Когда он включен, мы увидим все созданные нами SQL-запросы.
+ 
+    
     session = sessionmaker(bind=engine)
-    s = session()
 
     va.defineVariable('session...s', session())
