@@ -1,21 +1,18 @@
+from dotenv import dotenv_values
 from sqlalchemy import URL, Column, ForeignKey, Integer, String  
 from sqlalchemy.ext.declarative import declarative_base  
 from sqlalchemy.orm import relationship  
 from sqlalchemy import create_engine  
 
-hostname = 'localhost'
-database = 'postgres'
-username = 'postgres'
-pwd = 'Postg!2408'
-port_id = 5432
+config = dotenv_values(".env")
 
 url_object = URL.create(
-    "postgresql",
-    username=username,
-    password=pwd,  # plain (unescaped) text
-    host=hostname,
-    database=database,
-)
+        "postgresql",
+        username=config.get("PG_USERNAME"),
+        password=config.get("PG_PASSWORD"),
+        host=config.get("PG_HOSTNAME"),
+        database=config.get("PG_DATABASE"),
+    )
 
 engine = create_engine(url_object, echo = False)
 
