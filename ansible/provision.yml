@@ -1,0 +1,6 @@
+---
+- import_playbook: provisioners/digitalocean.yml
+# - import_playbook: provisioners/aws.yml
+
+# Configure provisioned servers
+- import_playbook: configure.yml

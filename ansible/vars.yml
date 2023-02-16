@@ -1,0 +1,5 @@
+---
+# Variables for our app.
+app_version: 2.0.1
+app_directory: /opt/ap-bot-ru-20230206
+# app_user: www-data
