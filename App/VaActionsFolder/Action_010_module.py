@@ -2,7 +2,7 @@ from telebot import types
 
 def Action_010(va_data,bot_data):
     print('Action_010')
-
+    debug_action = va_data.get('The current Action...current action')
     message = bot_data.get('message from customer...b11')
     bot_obj = bot_data.get('telebot_obj.TeleBot(5662687046******)...b10')
 
@@ -21,4 +21,4 @@ def Action_010(va_data,bot_data):
     markup_inline.add(button_10, button_20)
 
     mess = bot_data.get('Ask V-agent...msg_010')
-    bot_obj.send_message(message.chat.id, mess, reply_markup = markup_inline)
+    bot_obj.send_message(message.chat.id, debug_action+mess, reply_markup = markup_inline)
