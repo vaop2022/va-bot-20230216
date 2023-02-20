@@ -18,7 +18,7 @@ def start(va_data,bot_data):
 
     @bot_obj.message_handler(commands=['start'])
     def get_start(message):
-
+        # /start - insert session record with init va-data and bot-data
         bot_data.set('message from customer...b11', message)
         bot_data.set('message type from customer...message type', bot_data.get('message_type constant: commands...commands'))
 
@@ -26,6 +26,8 @@ def start(va_data,bot_data):
 
     @bot_obj.message_handler()
     def get_user_text(message):
+        #  Get last session record with va-data and bot-data
+
         bot_data.set('message from customer...b11', message)
         bot_data.set('message type from customer...message type', bot_data.get('message type constant: any_text...any text'))
 
@@ -33,6 +35,7 @@ def start(va_data,bot_data):
 
     @bot_obj.callback_query_handler(func = lambda call: True)
     def answer(call):
+        #  Get last session record with va-data and bot-data
         bot_data.set('input [call.data] from customer...input from customer', call.data)
         bot_data.set('message type from customer...message type', bot_data.get('message_type constant: input...input'))
 
@@ -52,9 +55,16 @@ def action(va_data,bot_data):
     va_data.set('The previous Action...previous action', current_action)
     va_data.set('The current Action...current action', temp)
 
-    trace(va_data,bot_data)
-
+    
     eval(va_data.get('The current Action...current action') + "(va_data,bot_data)")
+
+
+    message = bot_data.get('message from customer...b11')
+    print('id:', message.chat.id, va_data.get('The current Action...current action'))
+
+    # Insert session record with current va-data and bot-data
+    trace(va_data,bot_data) 
+
 
 def trace(va_data,bot_data):
     message = bot_data.get('message from customer...b11')
@@ -62,7 +72,8 @@ def trace(va_data,bot_data):
             chat_id = message.chat.id, 
             previous_action = va_data.get('The previous Action...previous action'), 
             direction = va_data.get('Direction...direction'), 
-            current_action = va_data.get('The current Action...current action')
+            current_action = va_data.get('The current Action...current action'),
+            va_data_column = bot_data
         ) 
         
     s = va_data.get('session...s')
