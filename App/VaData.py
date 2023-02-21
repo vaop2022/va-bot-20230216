@@ -48,6 +48,32 @@ class VaData():
         return self.va_data
 
 
-        
+    """
+    va.defineVariable('Context variable list...cvl', [])
+    va.defineVariable('Context variable dict...cvd', {})
+    """
+    def setContext(self, chat_id):
+        temp_dict = self.get('Context variable dict...cvd')
+        context_var_list = self.get('Context variable list...cvl')
+        print('ffffffftemp_dictffffffff', temp_dict)
+        print('fffffffcontext_var_listffffffff', context_var_list)
+        for context_var in context_var_list:
+            if chat_id in temp_dict:
+                temp_dict[chat_id][context_var] = self.get(context_var)
+            if chat_id not in temp_dict:
+                temp_dict[chat_id] = {}
+                temp_dict[chat_id][context_var] = self.get(context_var)
+
+        self.set('Context variable dict...cvd', temp_dict)   
+
+    def getContext(self, chat_id):
+        temp_dict = self.get('Context variable dict...cvd')
+        context_var_list = self.get('Context variable list...cvl')
+        #print('ffffffftemp_dictffffffff', temp_dict)
+        #print('fffffffcontext_var_listffffffff', context_var_list)
+        for context_var in context_var_list:
+            if chat_id in temp_dict:
+                self.set(context_var, temp_dict[chat_id][context_var])
+              
 
     

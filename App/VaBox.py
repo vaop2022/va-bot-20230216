@@ -19,6 +19,8 @@ def start(va_data,bot_data):
     @bot_obj.message_handler(commands=['start'])
     def get_start(message):
 
+        va_data.setContext(message.chat.id)
+
         bot_data.set('message from customer...b11', message)
         bot_data.set('message type from customer...message type', bot_data.get('message_type constant: commands...commands'))
 
@@ -26,6 +28,9 @@ def start(va_data,bot_data):
 
     @bot_obj.message_handler()
     def get_user_text(message):
+
+        va_data.getContext(message.chat.id)  
+
         bot_data.set('message from customer...b11', message)
         bot_data.set('message type from customer...message type', bot_data.get('message type constant: any_text...any text'))
 
@@ -33,6 +38,11 @@ def start(va_data,bot_data):
 
     @bot_obj.callback_query_handler(func = lambda call: True)
     def answer(call):
+
+        #print('calllllllllllll', call)
+
+        va_data.getContext(call.from_user.id)
+
         bot_data.set('input [call.data] from customer...input from customer', call.data)
         bot_data.set('message type from customer...message type', bot_data.get('message_type constant: input...input'))
 
@@ -55,6 +65,10 @@ def action(va_data,bot_data):
     trace(va_data,bot_data)
 
     eval(va_data.get('The current Action...current action') + "(va_data,bot_data)")
+
+    message1 = bot_data.get('message from customer...b11')
+    va_data.setContext(message1.chat.id)     
+    print('Context variable dict...cvd', va_data.get('Context variable dict...cvd'))
 
 def trace(va_data,bot_data):
     message = bot_data.get('message from customer...b11')

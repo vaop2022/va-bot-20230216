@@ -10,6 +10,9 @@ def setup(va):
 
     ### The VAOP variables setting
 
+    va.defineVariable('Context variable list...cvl', [])
+    va.defineVariable('Context variable dict...cvd', {})
+
     va.defineVariable('The sequential number of the v-agent jump...p10', 0)
     va.defineVariable('The max number of the v-agent jump. It is for prevent looping...p11', 1000)
     va.defineVariable('The default locale language code...p12_0', 'en-US')
@@ -18,6 +21,8 @@ def setup(va):
     va.defineVariable('The previous Action...previous action', 'Unknown') #15
     va.defineVariable('The current Action...current action', 'Action_000') #16
     va.defineVariable('Direction...direction', 'Direction_10') #17
+
+    va.set('Context variable list...cvl',['The current Action...current action'])
 
     ### The DB setting
 
