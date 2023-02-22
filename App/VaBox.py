@@ -17,6 +17,7 @@ def start(va_data,bot_data):
 
     bot_obj = bot_data.get('telebot.TeleBot(5662687046******)...b10')
 
+#### /start ##############################################################
     @bot_obj.message_handler(commands=['start'])
     def get_start(message):
 
@@ -31,6 +32,7 @@ def start(va_data,bot_data):
 
         action(va_data,bot_data)
 
+#### any text  ##############################################################
     @bot_obj.message_handler()
     def get_user_text(message):
 
@@ -41,10 +43,9 @@ def start(va_data,bot_data):
 
         action(va_data,bot_data)
 
+#### from button  ##############################################################
     @bot_obj.callback_query_handler(func = lambda call: True)
     def answer(call):
-
-        #print('calllllllllllll', call)
 
         va_data.getContext(call.from_user.id)
 
@@ -67,13 +68,17 @@ def action(va_data,bot_data):
     va_data.set('The previous Action...previous action', current_action)
     va_data.set('The current Action...current action', temp)
 
+    ### setContext
+    message1 = bot_data.get('message from customer...b11')
+    va_data.setContext(message1.chat.id)     
+    print('Context variable dict...cvd', va_data.get('Context variable dict...cvd'))
+    ###
+
     trace(va_data,bot_data)
 
     eval(va_data.get('The current Action...current action') + "(va_data,bot_data)")
 
-    message1 = bot_data.get('message from customer...b11')
-    va_data.setContext(message1.chat.id)     
-    print('Context variable dict...cvd', va_data.get('Context variable dict...cvd'))
+    
 
 def trace(va_data,bot_data):
     message = bot_data.get('message from customer...b11')
@@ -81,7 +86,9 @@ def trace(va_data,bot_data):
             chat_id = message.chat.id, 
             previous_action = va_data.get('The previous Action...previous action'), 
             direction = va_data.get('Direction...direction'), 
-            current_action = va_data.get('The current Action...current action')
+            current_action = va_data.get('The current Action...current action'),
+            va_data_column = va_data.get('Context variable dict...cvd')
+            #va_data_column = {'key_1':'value_1'}
         ) 
         
     s = va_data.get('session...s')

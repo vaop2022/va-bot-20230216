@@ -1,5 +1,5 @@
 from dotenv import dotenv_values
-from sqlalchemy import URL, Column, ForeignKey, Integer, String  
+from sqlalchemy import URL, Column, ForeignKey, Integer, String, JSON  
 from sqlalchemy.ext.declarative import declarative_base  
 from sqlalchemy.orm import relationship  
 from sqlalchemy import create_engine  
@@ -26,6 +26,7 @@ class VaTraceTable(Base):
     previous_action = Column(String(250))
     direction = Column(String(250))
     current_action = Column(String(250))
+    va_data_column = Column(JSON)
 
 
 Base.metadata.create_all(engine)  
