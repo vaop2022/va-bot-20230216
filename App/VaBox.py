@@ -1,7 +1,8 @@
 #from VaActions import *
 from VaDirectionDetector import getDirection
 from TableClasses import Base, VaTraceTable
-
+from VaData import VaData
+import VaConfig
 
 from  Action_000_module  import *
 from  Action_010_module  import *
@@ -19,7 +20,11 @@ def start(va_data,bot_data):
     @bot_obj.message_handler(commands=['start'])
     def get_start(message):
 
-        va_data.setContext(message.chat.id)
+        #va_data.setContext(message.chat.id)
+
+        va_data = VaData()
+        VaConfig.setup(va_data)
+        #va_data.set('The current Action...current action', 'Action_000')
 
         bot_data.set('message from customer...b11', message)
         bot_data.set('message type from customer...message type', bot_data.get('message_type constant: commands...commands'))

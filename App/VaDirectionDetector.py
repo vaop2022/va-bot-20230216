@@ -1,11 +1,21 @@
 def getDirection(va_data,bot_data):
+    print('start dd')
 
     va_data.set('Direction...direction', 'The_code_of_the_direction_is _unknown')
 
 
+    
     def Action_000_case(va_data,bot_data):
         pass
         print('Action_000_case')
+        message = bot_data.get('message from customer...b11')
+        if va_data.isContextExist(message.chat.id):
+            va_data.set('Direction...direction', 'Direction_10')
+        if not va_data.isContextExist(message.chat.id):
+            va_data.setContext(message.chat.id)
+            va_data.set('Direction...direction', 'Direction_10')
+        
+
 
     def Action_010_case(va_data,bot_data):
         pass
@@ -36,12 +46,15 @@ def getDirection(va_data,bot_data):
         'Action_040':Action_040_case,
         'Action_9000':Action_9000_case
     }
-
+    
     current_action = va_data.get('The current Action...current action')
 
+    print('call switch')
     switch_options[current_action](va_data,bot_data)
 
+    print('end dd current_action', current_action)
 
+    """
     if  bot_data.get('message type from customer...message type') == bot_data.get('message_type constant: commands...commands'):
         va_data.set('Direction...direction', 'Direction_10')
 
@@ -55,6 +68,9 @@ def getDirection(va_data,bot_data):
             va_data.set('Direction...direction', 'Direction_40')
         if bot_data.get('input [call.data] from customer...input from customer') == bot_data.get('input from customer constant...again'):
             va_data.set('Direction...direction', 'Direction_50')
+    """
+    
+
     
 
 
