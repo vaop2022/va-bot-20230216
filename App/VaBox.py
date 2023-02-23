@@ -20,17 +20,13 @@ def start(va_data,bot_data):
 #### /start ##############################################################
     @bot_obj.message_handler(commands=['start'])
     def get_start(message):
-
-        #va_data.setContext(message.chat.id)
-
         va_data = VaData()
         VaConfig.setup(va_data)
-        #va_data.set('The current Action...current action', 'Action_000')
 
         bot_data.set('message from customer...b11', message)
         bot_data.set('message type from customer...message type', bot_data.get('message_type constant: commands...commands'))
 
-        action(va_data,bot_data)
+        action(va_data,bot_data, message.chat.id)
 
 #### any text  ##############################################################
     @bot_obj.message_handler()
@@ -41,7 +37,7 @@ def start(va_data,bot_data):
         bot_data.set('message from customer...b11', message)
         bot_data.set('message type from customer...message type', bot_data.get('message type constant: any_text...any text'))
 
-        action(va_data,bot_data)
+        action(va_data,bot_data, message.chat.id)
 
 #### from button  ##############################################################
     @bot_obj.callback_query_handler(func = lambda call: True)
@@ -52,11 +48,11 @@ def start(va_data,bot_data):
         bot_data.set('input [call.data] from customer...input from customer', call.data)
         bot_data.set('message type from customer...message type', bot_data.get('message_type constant: input...input'))
 
-        action(va_data,bot_data)
+        action(va_data,bot_data, call.from_user.id)
 
     bot_obj.polling(non_stop=True)
 
-def action(va_data,bot_data):
+def action(va_data, bot_data, chat_id):
 
     getDirection(va_data,bot_data)
     va_script = va_data.get('VA script...va_script')
@@ -69,26 +65,23 @@ def action(va_data,bot_data):
     va_data.set('The current Action...current action', temp)
 
     ### setContext
-    message1 = bot_data.get('message from customer...b11')
-    va_data.setContext(message1.chat.id)     
+    va_data.setContext(chat_id)     
     print('Context variable dict...cvd', va_data.get('Context variable dict...cvd'))
     ###
 
-    trace(va_data,bot_data)
+    trace(va_data,bot_data,chat_id)
 
     eval(va_data.get('The current Action...current action') + "(va_data,bot_data)")
 
     
 
-def trace(va_data,bot_data):
-    message = bot_data.get('message from customer...b11')
+def trace(va_data,bot_data,chat_id_1):
     trace = VaTraceTable(
-            chat_id = message.chat.id, 
+            chat_id = chat_id_1, 
             previous_action = va_data.get('The previous Action...previous action'), 
             direction = va_data.get('Direction...direction'), 
             current_action = va_data.get('The current Action...current action'),
             va_data_column = va_data.get('Context variable dict...cvd')
-            #va_data_column = {'key_1':'value_1'}
         ) 
         
     s = va_data.get('session...s')

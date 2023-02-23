@@ -20,7 +20,7 @@ def setup(va):
     va.defineVariable('VA script...va_script', getVaScript()) #14
     va.defineVariable('The previous Action...previous action', 'Unknown') #15
     va.defineVariable('The current Action...current action', 'Action_000') #16
-    va.defineVariable('Direction...direction', 'Direction_10') #17
+    va.defineVariable('Direction...direction', 'Direction_unknown') #17
 
     va.set('Context variable list...cvl',['The current Action...current action'])
 
