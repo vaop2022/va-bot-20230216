@@ -60,7 +60,7 @@ async def val(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Get the user ID and command from the update
     user_id = update.effective_user.id
     command = "/help"
-
+    print(command_counts)
     # Get the current count for this user and command
     count = command_counts.get((user_id, command), 0)
 
