@@ -52,29 +52,29 @@ class VaData():
     va.defineVariable('Context variable list...cvl', [])
     va.defineVariable('Context variable dict...cvd', {})
     """
-    def setContext(self, chat_id):
+    def saveContext(self, user_id):
         temp_dict = self.get('Context variable dict...cvd')
         context_var_list = self.get('Context variable list...cvl')
         for context_var in context_var_list:
-            if chat_id in temp_dict:
-                temp_dict[chat_id][context_var] = self.get(context_var)
-            if chat_id not in temp_dict:
-                temp_dict[chat_id] = {}
-                temp_dict[chat_id][context_var] = self.get(context_var)
+            if user_id in temp_dict:
+                temp_dict[user_id][context_var] = self.get(context_var)
+            if user_id not in temp_dict:
+                temp_dict[user_id] = {}
+                temp_dict[user_id][context_var] = self.get(context_var)
 
         self.set('Context variable dict...cvd', temp_dict)   
 
-    def getContext(self, chat_id):
+    def loadContext(self, user_id):
         temp_dict = self.get('Context variable dict...cvd')
         context_var_list = self.get('Context variable list...cvl')
         for context_var in context_var_list:
-            if chat_id in temp_dict:
-                self.set(context_var, temp_dict[chat_id][context_var])
+            if user_id in temp_dict:
+                self.set(context_var, temp_dict[user_id][context_var])
               
-    def isContextExist(self, chat_id):
+    def isContextExist(self, user_id):
         temp_dict = self.get('Context variable dict...cvd')
         temp_out = False
-        if chat_id in temp_dict:
+        if user_id in temp_dict:
             temp_out = True
 
         return temp_out 

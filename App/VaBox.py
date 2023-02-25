@@ -36,10 +36,21 @@ def start(va_data,bot_data):
         #bot_data.set('message type from customer...message type', bot_data.get('message_type constant: commands...commands'))
 
         action(va_data,bot_data, update, context)
-        
-        await context.bot.send_message(chat_id=update.effective_chat.id, text="/srart I'm a bot, please talk to me!")
 
+        message_to_user = "/srart I'm a bot, please talk to me!"
+        
+        await context.bot.send_message(chat_id=update.effective_chat.id, text=message_to_user)
+
+    async def val(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+        action(va_data,bot_data, update, context)
+
+        message_to_user = "/val I'm a bot, please talk to me!"
+        
+        await context.bot.send_message(chat_id=update.effective_chat.id, text=message_to_user)
+    
     async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        
         await context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, I didn't understand that command.")
 
 
@@ -47,12 +58,14 @@ def start(va_data,bot_data):
     application = ApplicationBuilder().token('6273699064:AAEw16IHpA_YEJ6a5nQdx-DkhpmojZzpYSQ').build()
 
     start_handler = CommandHandler('start', start)
+    val_handler = CommandHandler('val', val)
 
     # Other handlers
     unknown_handler = MessageHandler(filters.COMMAND, unknown)
 
 
     application.add_handler(start_handler)
+    application.add_handler(val_handler)
 
     application.add_handler(unknown_handler)
 
