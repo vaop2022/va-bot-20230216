@@ -47,11 +47,20 @@ class VaData():
 
         return self.va_data
 
+    def saveContext(self, user_id, data_obj):
+        pass
+        temp_dict = self.get('Context variable dict...cvd') 
+        temp_dict[user_id] = data_obj
+        self.set('Context variable dict...cvd', temp_dict) 
 
+    def loadContext(self, user_id):
+        temp_dict = self.get('Context variable dict...cvd')
+
+        return temp_dict[user_id]
     """
     va.defineVariable('Context variable list...cvl', [])
     va.defineVariable('Context variable dict...cvd', {})
-    """
+    
     def saveContext(self, user_id):
         temp_dict = self.get('Context variable dict...cvd')
         context_var_list = self.get('Context variable list...cvl')
@@ -78,3 +87,5 @@ class VaData():
             temp_out = True
 
         return temp_out 
+
+    """

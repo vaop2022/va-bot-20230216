@@ -24,7 +24,7 @@ logging.basicConfig(
     level=logging.INFO
 )
 
-def start(va_data,bot_data):
+def start(va_data,bot_data,context_data):
 
     async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
@@ -32,8 +32,7 @@ def start(va_data,bot_data):
         va_data = VaData()
         VaConfig.setup(va_data)
 
-        #bot_data.set('message from customer...b11', message)
-        #bot_data.set('message type from customer...message type', bot_data.get('message_type constant: commands...commands'))
+        context_data.saveContext(user_id, va_data)
 
         action(va_data,bot_data, update, context)
 
@@ -42,6 +41,10 @@ def start(va_data,bot_data):
         await context.bot.send_message(chat_id=update.effective_chat.id, text=message_to_user)
 
     async def val(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        user_id = update.effective_user.id
+        va_data = context_data.loadContext(user_id)
+
+        print('context_data', context_data)
 
         action(va_data,bot_data, update, context)
 
@@ -89,6 +92,8 @@ def action(va_data, bot_data,  update, context):
     ###
 
     #trace(va_data,bot_data,chat_id)
+
+
 
     eval(va_data.get('The current Action...current action') + "(va_data,bot_data, update, context)")
 

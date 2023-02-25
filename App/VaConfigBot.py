@@ -27,5 +27,7 @@ def setup(bot):
     bot.defineVariable('button title...Yes/No/Up to You', 'Buy')
     bot.defineVariable('button title...Again', 'Ask V-agent again')
 
+    bot.defineVariable('command count...command_counts',{})
+
 
   

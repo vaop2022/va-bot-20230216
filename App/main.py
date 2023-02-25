@@ -10,13 +10,17 @@ sys.path.append(fpath)
 
 import VaBox
 import VaScript
+import ContextData
 import VaConfig
 import VaConfigBot
 from VaData import VaData
 
+context_data = VaData()
+ContextData.setup(context_data)
 
 va_data = VaData()
 VaConfig.setup(va_data)
+
 bot_data = VaData()
 VaConfigBot.setup(bot_data)
 
@@ -28,7 +32,7 @@ if False:
     print(test)
 print('------------------------')
 
-VaBox.start(va_data,bot_data)
+VaBox.start(va_data,bot_data,context_data)
 
 
 print('\nThe end')
