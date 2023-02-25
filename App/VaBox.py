@@ -1,3 +1,10 @@
+
+import logging
+from telegram import Update
+from telegram.ext import filters, MessageHandler, ApplicationBuilder, ContextTypes, CommandHandler
+from telegram import InlineQueryResultArticle, InputTextMessageContent
+from telegram.ext import InlineQueryHandler
+
 #from VaActions import *
 from VaDirectionDetector import getDirection
 from TableClasses import Base, VaTraceTable
@@ -11,6 +18,69 @@ from  Action_030_module  import *
 from  Action_040_module  import *
 from  Action_9000_module  import *
 
+
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.INFO
+)
+
+def start(va_data,bot_data):
+
+    async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        user_id = update.effective_user.id
+
+        va_data = VaData()
+        VaConfig.setup(va_data)
+
+        #bot_data.set('message from customer...b11', message)
+        #bot_data.set('message type from customer...message type', bot_data.get('message_type constant: commands...commands'))
+
+        action(va_data,bot_data, update, context)
+        
+        await context.bot.send_message(chat_id=update.effective_chat.id, text="/srart I'm a bot, please talk to me!")
+
+    async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        await context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, I didn't understand that command.")
+
+
+
+    application = ApplicationBuilder().token('6273699064:AAEw16IHpA_YEJ6a5nQdx-DkhpmojZzpYSQ').build()
+
+    start_handler = CommandHandler('start', start)
+
+    # Other handlers
+    unknown_handler = MessageHandler(filters.COMMAND, unknown)
+
+
+    application.add_handler(start_handler)
+
+    application.add_handler(unknown_handler)
+
+    application.run_polling()
+
+def action(va_data, bot_data,  update, context):
+
+    getDirection(va_data,bot_data,  update, context)
+    va_script = va_data.get('VA script...va_script')
+    current_action = va_data.get('The current Action...current action')
+    direction = va_data.get('Direction...direction')
+
+    temp = va_script[current_action][direction]
+    
+    va_data.set('The previous Action...previous action', current_action)
+    va_data.set('The current Action...current action', temp)
+
+    ### setContext
+    #va_data.setContext(chat_id)     
+    #print('Context variable dict...cvd', va_data.get('Context variable dict...cvd'))
+    ###
+
+    #trace(va_data,bot_data,chat_id)
+
+    eval(va_data.get('The current Action...current action') + "(va_data,bot_data, update, context)")
+
+
+"""
 def start(va_data,bot_data):
     
     Action_000(va_data,bot_data)
@@ -88,3 +158,5 @@ def trace(va_data,bot_data,chat_id_1):
     s.add(trace) 
     s.commit()
 
+
+"""

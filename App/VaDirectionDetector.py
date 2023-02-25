@@ -1,6 +1,9 @@
-def getDirection(va_data,bot_data):
+def getDirection(va_data, bot_data, update, context):
     print('start dd')
 
+    va_data.set('Direction...direction', 'Direction_10')
+
+"""
     va_data.set('Direction...direction', 'The_code_of_the_direction_is _unknown')
     message = bot_data.get('message from customer...b11')
 
@@ -67,7 +70,11 @@ def getDirection(va_data,bot_data):
 
     print('end dd current_action', current_action)
 
-    """
+    
+
+
+
+    
     if  bot_data.get('message type from customer...message type') == bot_data.get('message_type constant: commands...commands'):
         va_data.set('Direction...direction', 'Direction_10')
 

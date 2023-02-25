@@ -53,12 +53,6 @@ if __name__ == '__main__':
     unknown_handler = MessageHandler(filters.COMMAND, unknown)
     
 
-    application.add_handler(start_handler)
-    application.add_handler(val_handler)
-    application.add_handler(echo_handler)
-    application.add_handler(caps_handler)
-    application.add_handler(inline_caps_handler)
 
-    application.add_handler(unknown_handler)
-    
+
     application.run_polling()

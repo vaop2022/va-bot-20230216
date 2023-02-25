@@ -1,7 +1,13 @@
 from telebot import types
 
-def Action_010(va_data,bot_data):
+def Action_010(va_data,bot_data, update, context):
     print('Action_010')
+
+
+    #await context.bot.send_message(chat_id=update.effective_chat.id, text="/srart I'm a bot, please talk to me!")
+
+    """
+
 
     message = bot_data.get('message from customer...b11')
     bot_obj = bot_data.get('telebot_obj.TeleBot(5662687046******)...b10')
@@ -22,3 +28,5 @@ def Action_010(va_data,bot_data):
 
     mess = bot_data.get('Ask V-agent...msg_010')
     bot_obj.send_message(message.chat.id, mess, reply_markup = markup_inline)
+
+    """
