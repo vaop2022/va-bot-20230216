@@ -32,11 +32,13 @@ def start(va_data,bot_data,context_data):
         va_data = VaData()
         VaConfig.setup(va_data)
 
+        va_data.set('text out...text_out', '/srart a bot, please talk to me!')
+
         context_data.saveContext(user_id, va_data)
 
         action(va_data,bot_data, update, context)
 
-        message_to_user = "/srart I'm a bot, please talk to me!"
+        message_to_user = va_data.get('text out...text_out')
         
         await context.bot.send_message(chat_id=update.effective_chat.id, text=message_to_user)
 
@@ -44,11 +46,14 @@ def start(va_data,bot_data,context_data):
         user_id = update.effective_user.id
         va_data = context_data.loadContext(user_id)
 
-        print('context_data', context_data)
+        print('context_data', 
+              va_data.get('The current Action...current action'),
+              va_data.get('command count...command_counts'))
 
         action(va_data,bot_data, update, context)
+        context_data.saveContext(user_id, va_data)
 
-        message_to_user = "/val I'm a bot, please talk to me!"
+        message_to_user = va_data.get('text out...text_out')
         
         await context.bot.send_message(chat_id=update.effective_chat.id, text=message_to_user)
     
@@ -97,7 +102,7 @@ def action(va_data, bot_data,  update, context):
 
     eval(va_data.get('The current Action...current action') + "(va_data,bot_data, update, context)")
 
-
+    
 """
 def start(va_data,bot_data):
     

@@ -2,10 +2,13 @@ from telebot import types
 
 def Action_010(va_data,bot_data, update, context):
     print('Action_010')
-
-
-    #await context.bot.send_message(chat_id=update.effective_chat.id, text="/srart I'm a bot, please talk to me!")
-
+    count = va_data.get('command count...command_counts')
+    va_data.set('command count...command_counts', count + 1)
+    
+    va_data.set('text out...text_out', '/val a bot, please talk to me!')
+    if(count > 2):
+        va_data.set('text out...text_out', '!!! /val command is more than three times in row')
+    
     """
 
 
