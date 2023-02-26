@@ -10,7 +10,7 @@ def setup(va):
 
     ### The VAOP variables setting
 
-    va.defineVariable('command count...command_counts', 0)
+    va.defineVariable('command count...command_counts', 1)
     va.defineVariable('text out...text_out','unknown_text_out')
 
     va.defineVariable('Context variable list...cvl', [])

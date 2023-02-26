@@ -57,35 +57,4 @@ class VaData():
         temp_dict = self.get('Context variable dict...cvd')
 
         return temp_dict[user_id]
-    """
-    va.defineVariable('Context variable list...cvl', [])
-    va.defineVariable('Context variable dict...cvd', {})
     
-    def saveContext(self, user_id):
-        temp_dict = self.get('Context variable dict...cvd')
-        context_var_list = self.get('Context variable list...cvl')
-        for context_var in context_var_list:
-            if user_id in temp_dict:
-                temp_dict[user_id][context_var] = self.get(context_var)
-            if user_id not in temp_dict:
-                temp_dict[user_id] = {}
-                temp_dict[user_id][context_var] = self.get(context_var)
-
-        self.set('Context variable dict...cvd', temp_dict)   
-
-    def loadContext(self, user_id):
-        temp_dict = self.get('Context variable dict...cvd')
-        context_var_list = self.get('Context variable list...cvl')
-        for context_var in context_var_list:
-            if user_id in temp_dict:
-                self.set(context_var, temp_dict[user_id][context_var])
-              
-    def isContextExist(self, user_id):
-        temp_dict = self.get('Context variable dict...cvd')
-        temp_out = False
-        if user_id in temp_dict:
-            temp_out = True
-
-        return temp_out 
-
-    """

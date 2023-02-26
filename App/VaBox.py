@@ -91,15 +91,6 @@ def action(va_data, bot_data,  update, context):
     va_data.set('The previous Action...previous action', current_action)
     va_data.set('The current Action...current action', temp)
 
-    ### setContext
-    #va_data.setContext(chat_id)     
-    #print('Context variable dict...cvd', va_data.get('Context variable dict...cvd'))
-    ###
-
-    #trace(va_data,bot_data,chat_id)
-
-
-
     eval(va_data.get('The current Action...current action') + "(va_data,bot_data, update, context)")
 
     

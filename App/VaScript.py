@@ -23,7 +23,7 @@ def getVaScript():
           "_action_description":{
               "_010":"empty"
           },
-            "Direction_10":"Action_010",  "_010":"/start",
+            "Direction_10":"Action_020",  "_010":"/val",
             "Direction_20":"Action_010",  "_020":"any text",
             "Direction_30":"Action_030",  "_030":"answer yes_no",
             "Direction_40":"Action_040",  "_040":"answer yes_no_uptoyou",
@@ -37,7 +37,7 @@ def getVaScript():
           "_action_description":{
               "_010":"empty"
           },
-        "Direction_10":"Action_010",  "_010":"/start",
+        "Direction_10":"Action_020",  "_010":"/val",
         "Direction_20":"Action_020",  "_020":"any text",
         "Direction_30":"Action_030",  "_030":"answer yes_no",
         "Direction_40":"Action_040",  "_040":"answer yes_no_uptoyou",
