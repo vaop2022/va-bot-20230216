@@ -1,10 +1,10 @@
-from dotenv import dotenv_values
+import os
 from sqlalchemy import URL, Column, ForeignKey, Integer, String  
 from sqlalchemy.ext.declarative import declarative_base  
 from sqlalchemy.orm import relationship  
 from sqlalchemy import create_engine  
 
-config = dotenv_values(".env")
+config = os.environ
 
 url_object = URL.create(
         "postgresql",

@@ -1,4 +1,4 @@
-from dotenv import dotenv_values
+import os
 from VaScript import getVaScript
 from sqlalchemy import URL, create_engine
 from sqlalchemy.orm import sessionmaker
@@ -6,7 +6,7 @@ from TableClasses import Base, VaTraceTable
 
 def setup(va):
 
-    config = dotenv_values(".env")
+    config = os.environ
 
     ### The VAOP variables setting
 
