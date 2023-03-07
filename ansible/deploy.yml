@@ -1,0 +1,27 @@
+---
+- hosts: bots
+  become: yes
+
+  vars_files:
+    - vars.yml
+    
+  tasks:
+    #todo: pip stuff 
+    - name: Ensure app directory exists and is writeable.
+      file:
+        path: "{{ app_directory }}"
+        state: directory
+        # owner: "{{ app_user }}"
+        # group: "{{ app_user }}"
+        # mode: 0755
+
+    - name: Ensure demo application is at correct release.
+      git:
+        repo: git@github.com:vrakitine/ap-bot-ru-20230206.git
+        version: "ap-bot-ru_r1" #"{{ app_version }}"
+        dest: "{{ app_directory }}"
+        accept_hostkey: true
+        force: true
+      register: app_updated
+      become: no
+      # become_user: "{{ app_user }}"

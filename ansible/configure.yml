@@ -1,0 +1,23 @@
+---
+- hosts: bots
+  become: yes
+
+  vars_files:
+    - vars.yml
+
+  # roles:
+  #   - geerlingguy.postgresql
+    # - geerlingguy.firewall
+  roles:
+    - geerlingguy.git
+    
+  tasks:
+    #todo: pip stuff 
+    - name: Ensure app directory exists and is writeable.
+      file:
+        path: "{{ app_directory }}"
+        state: directory
+        # owner: "{{ app_user }}"
+        # group: "{{ app_user }}"
+        # mode: 0755
+
