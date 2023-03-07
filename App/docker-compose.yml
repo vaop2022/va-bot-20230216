@@ -3,11 +3,12 @@ services:
   db:
     image: postgres
     volumes:
-      - ../data/db:/var/lib/postgresql/data
+      - ./data/db:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    restart: always
 
   bot:
     build: .
@@ -20,5 +21,6 @@ services:
       - PG_HOSTNAME=db
       - PG_DATABASE=${POSTGRES_DB}
       - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+    restart: always
     depends_on:
       - db
